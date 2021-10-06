@@ -1,0 +1,58 @@
+#navegacion
+{
+    margin-top: 10px;
+}
+#contenido
+{
+    margin-top: 200px;
+}
+
+
+#mayuscula
+{
+    text-transform: uppercase; 
+}
+
+img {
+    -webkit-box-reflect: below 9px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(1.5, transparent), to(rgba(0,0,0,0.4)));
+/*    -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+    -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.8);*/
+	
+/*	-webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);*/
+	cursor: pointer;
+	
+	/*transition: all .5s ease;
+	-webkit-filter: grayscale(3);
+	transform: scale(1.2,1.2);*/
+}
+
+
+#efecto:hover{
+/*    -webkit-box-reflect: below 9px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(1.5, transparent), to(rgba(0,0,0,0.4)));
+/*    -webkit-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+    -moz-box-shadow: 0px 0px 20px rgba(255,255,255,0.8);
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.8);*/
+	
+/*	-webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    transform: scale(1.5);*/
+/*	cursor: pointer;*/
+ /*background:#A5FAC7;
+	transition: all .5s ease;
+	-webkit-filter: grayscale(3);
+	/*transform: scale(1.2,1.2);*/
+}
+
+.efecto{
+	/*background:#E3F8DC;;
+	transition: all .5s ease;
+	-webkit-filter: grayscale(3);
+    */
+}
