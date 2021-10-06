@@ -9,7 +9,7 @@
 	?>
 	<style>
 	.body {
-		/* background-image: url(../image/libros.jpg); */
+		background-image: url(../image/libros.jpg);
 		background-attachment: fixed;
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
