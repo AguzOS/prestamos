@@ -1,3 +1,4 @@
+<?php echo "hola"; ?>
 <!DOCTYPE html>
 <html>
 	<?php
