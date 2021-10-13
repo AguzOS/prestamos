@@ -85,7 +85,7 @@
                 font-size: 20px;
             }
         </style>
-	<body class="body">
+	<body class="body" onload="registrar_libro_section();">
         <?php include('../lib/header.php');?>
         
         <section>
@@ -93,7 +93,7 @@
                 <center>
                     <div class="container-fluid">
                         <div class="formBox">
-                            <form method="post" action="../insert/insert_libros.php">
+                            <form method="post" action="" id="form_registro_libro">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h1>Registro de libros</h1>
@@ -103,14 +103,14 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="inputBox ">
-                                                <input type="text" name="n_l" class="input" placeholder="Nombre del libro" required>
-                                                <input type="text" name="id_a" class="input" required value="<?=$_SESSION['idadmi']?>" hidden>
+                                                <input type="text" name="n_l" class="input" placeholder="Nombre del libro" >
+                                                <input type="text" name="id_a" class="input"  value="<?=$_SESSION['idadmi']?>" hidden>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="inputBox">
-                                                <input type="text" name="e" class="input" placeholder="Editorial" required>
+                                                <input type="text" name="e" class="input" placeholder="Editorial" >
                                             </div>
                                         </div>
                                     </div>
@@ -118,13 +118,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="inputBox">
-                                                <input type="text" name="a" class="input" placeholder="Autor" required>
+                                                <input type="text" name="a" class="input" placeholder="Autor" >
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
                                             <div class="inputBox">
-                                                <input type="number" name="c" min="1" class="input" placeholder="Cantidad" required>
+                                                <input type="number" name="c" min="1" class="input" placeholder="Cantidad" >
                                             </div>
                                         </div>
                                     </div>
@@ -132,14 +132,14 @@
                                         <div class="col-sm-12">
                                             <div class="inputBox">
                                                 <textarea class="textarea" name="d" placeholder="Descripcion del estado del libro"
-                                                rows="10" cols="50" required></textarea>
+                                                rows="10" cols="50" ></textarea>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-12">
-                                        <button type="submit" name="" class="button  glyphicon glyphicon-floppy-save" value=""> Guardar Registro</button>
+                                            <input type="submit" name="" class="button  glyphicon glyphicon-floppy-save" value="Guardar Registro" id="btn_registro_libro"> 
                                         </div>
                                     </div>
                             </form>
@@ -147,7 +147,9 @@
                     </div>
                 </center>
             </div>
-        </section> 
+        </section>
+
+        <script src="../js/assets.js"></script>
 	</body>
 </html>
 <?php
