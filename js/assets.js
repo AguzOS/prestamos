@@ -14,6 +14,6 @@ function registrar_libro_section() {
             console.log(response);
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
-        })
+        });
     });
 }
