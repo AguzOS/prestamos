@@ -19,4 +19,6 @@
 	<script src="../lib/jss/datatables.min.js"></script>
 	<link rel="stylesheet" href="../lib/css/really-simple-jquery-dialog.css">
 	<script src="../lib/jss/really-simple-jquery-dialog.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 </head>

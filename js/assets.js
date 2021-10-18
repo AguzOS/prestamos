@@ -11,7 +11,8 @@ function registrar_libro_section() {
             url: "../insert/insert_libros.php",
             data: { "datos": campos }
         }).done(function(response) {
-            console.log(response);
+            // console.log(response);
+            $.confirm
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
         });
