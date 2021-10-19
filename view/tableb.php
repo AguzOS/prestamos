@@ -29,6 +29,7 @@
     </div> -->
 
     <table id="table"></table>
+    <?php require_once "../json/json_prueba.php" ?>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -40,26 +41,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     <script>
-
         var out = "";
 
-        function cargartabla() {
-
-            $('#table').bootstrapTable({
-                columns: [{
-                    field: 'id',
-                    title: 'Item ID'
-                }, {
-                    field: 'name',
-                    title: 'Item Name'
-                }, {
-                    field: 'price',
-                    title: 'Item Price'
-                }],
-                data: datos()
-            })
-        }
-        
         function datos() {
             var result = $.ajax({
                 type: "POST",
@@ -72,12 +55,30 @@
                         id: element[0],
                         name: element[1],
                         price: '$1'
-                    },]
-                    console.log(out);
+                    }, ]
                 }
 
             }).fail(function(jqXHR) {
                 console.log(jqXHR);
+            })
+        }
+
+        function cargartabla() {
+
+            $('#table').bootstrapTable({
+                url: "../json/json_prueba.php",
+                pagination: true,
+                search: true,
+                columns: [{
+                    field: 'id',
+                    title: 'ID'
+                }, {
+                    field: 'nombre',
+                    title: 'Nombre'
+                }, {
+                    field: 'editorial',
+                    title: 'Editorial'
+                }],
             })
         }
 

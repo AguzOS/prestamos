@@ -29,8 +29,8 @@
             //     <span aria-hidden='true'></span></button></a></td>";
 
             // $celdas .= "</tr>";
-            $myArray[] = array($no, $value['nom_libro'], $value['editorial'], $value['autor'], $value['cantidad'], $value['condicion']);
+            $myArray[] = array("id" => $no, "nombre" => $value['nom_libro'], "editorial" => $value['editorial'], $value['autor'], $value['cantidad'], $value['condicion']);
         }
         
-        echo json_encode($myArray, JSON_UNESCAPED_UNICODE);
+        echo json_encode($myArray);
     ?>
