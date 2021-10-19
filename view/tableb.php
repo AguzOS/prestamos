@@ -22,15 +22,24 @@
 
     <div id="toolbar" class="select">
         <select class="form-control">
-        <option value="">Export Basic</option>
-        <option value="all">Export All</option>
-        <option value="selected">Export Selected</option>
-      </select>
+            <option value="">Export Basic</option>
+            <option value="all">Export All</option>
+            <option value="selected">Export Selected</option>
+        </select>
     </div>
 
-    <table id="table" data-show-export="true" data-pagination="true" data-side-pagination="server" data-click-to-select="true" data-toolbar="#toolbar" data-show-toggle="true" data-show-columns="true" >
-        
-                    <?php
+    <table id="table" data-show-export="true" data-pagination="true" data-side-pagination="server" data-click-to-select="true" data-toolbar="#toolbar" data-filter-control="true" data-show-search-clear-button="true" data-show-toggle="true" data-show-columns="true">
+        <thead>
+            <tr>
+                <th data-field="id" data-filter-control="input">ID</th>
+                <th data-field="nombre" data-filter-control="input">Nombre</th>
+                <th data-field="editorial" data-filter-control="input">Editorial</th>
+                <th data-field="autor" data-filter-control="input">Autor</th>
+                <th data-field="cantidad" data-filter-control="input">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
                         require_once "../conexion.php";
                         $obj = new conexion();
 
@@ -61,6 +70,8 @@
                             echo "</tr>";
                         }
                     ?>
+        </tbody>
+        
     </table>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
@@ -71,6 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
     <script>
         var $table = $('#table')
 
@@ -107,7 +119,7 @@
                     }, {
                         field: 'borrar',
                         title: 'Borrar'
-                    },]
+                    }, ]
                 })
             }).trigger('change')
         })
