@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 </head>
 
 <style>
@@ -19,48 +20,63 @@
 </style>
 
 <body onload="">
-
-    <!-- <div id="toolbar" class="select">
-        <select class="form-control">
-            <option value="">Export Basic</option>
-            <option value="all">Export All</option>
-            <option value="selected">Export Selected</option>
-        </select>
-    </div> -->
-
-    <table id="table"></table>
+    <table id="table" data-toolbar="#toolbar"></table>
     <?php require_once "../json/json_prueba.php" ?>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script>
-        var out = "";
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="like" href="javascript:void(0)" title="Like">',
+                '<i class="fa fa-heart"></i>',
+                '</a>  ',
+                '<a class="remove" href="javascript:void(0)" title="Remove">',
+                '<i class="fa fa-trash"></i>',
+                '</a>'
+            ].join('')
+        }
+        window.operateEvents = {
+            'click .like': function(e, value, row, index) {
+                // alert('You click like action, row: ' + JSON.stringify(row));
+                var datos;
+                // console.log(row);
+                datos = row;
+                console.log(datos["_id"]);
 
-        function datos() {
-            var result = $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: "../json/json_prueba.php",
-            }).done(function(response) {
-                for (let i = 0; i < response.length; i++) {
-                    const element = response[i];
-                    out = [{
-                        id: element[0],
-                        name: element[1],
-                        price: '$1'
-                    }, ]
-                }
+            },
+            'click .remove': function(e, value, row, index) {
+                var datos;
+                // console.log(row);
+                datos = row["_id"];
+                // console.log(row["_id"]);
+                $.alert({
+                    title: "Borrar",
+                    content: "Desea borrar?",
+                    buttons: {
 
-            }).fail(function(jqXHR) {
-                console.log(jqXHR);
-            })
+                        confirm: function() {
+                            $.ajax({
+                                type: "POST",
+                                url: "../json/borrar_ajax.php",
+                                data: {
+                                    "data_": datos
+                                }
+                            }).done(function(response) {
+                                console.log(response);
+                            }).fail(function(jqXHR) {
+                                console.log(jqXHR);
+                            });
+                        },
+                        cancel: function() {
+
+                        }
+                    }
+                })
+
+            }
         }
 
         function cargartabla() {
@@ -78,6 +94,13 @@
                 }, {
                     field: 'editorial',
                     title: 'Editorial'
+                }, {
+                    field: 'operate',
+                    title: 'Item Operate',
+                    align: 'center',
+                    clickToSelect: false,
+                    events: window.operateEvents,
+                    formatter: operateFormatter
                 }],
             })
         }
