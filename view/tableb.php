@@ -22,25 +22,21 @@
 </style>
 
 <body onload="">
-    <table id="table" data-filter-control="true" data-pagination="true" data-toggle="table"
-  data-height="460"
-  data-pagination="true"
-  data-page-list="[5, 10, All]" data-show-toggle="true" 
-  data-show-fullscreen="true" 
-  data-show-columns="true" 
-  data-show-refresh="true">
-
+    <div class="col-md-6">
+        
+    <table id="table" data-filter-control="true" data-pagination="true" data-toggle="table" data-height="460" data-pagination="true" data-page-list="[5, 10, All]" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true" data-show-refresh="true" data-buttons-class="primary" data-sort-name="name" data-sort-order="desc">
         <thead>
             <tr>
                 <th data-field="id">ID</th>
-                <th data-field="nombre" data-filter-control="input">Nombre</th>
-                <th data-field="editorial" data-filter-control="input">Editorial</th>
-                <th data-field="autor" data-filter-control="input">Autor</th>
-                <th data-field="cantidad" data-filter-control="select">Cantidad</th>
-                <th data-field="condicion" data-filter-control="input">Condicion</th>
+                <th data-field="nombre" data-filter-control="input" data-sortable="true">Nombre</th>
+                <th data-field="editorial" data-filter-control="input" data-sortable="true" >Editorial</th>
+                <th data-field="autor" data-filter-control="input" data-sortable="true">Autor</th>
+                <th data-field="cantidad" data-filter-control="select" data-sortable="true">Cantidad</th>
+                <th data-field="condicion" data-filter-control="input" >Condicion</th>
             </tr>
         </thead>
     </table>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -62,11 +58,7 @@
         }
         window.operateEvents = {
             'click .like': function(e, value, row, index) {
-                // alert('You click like action, row: ' + JSON.stringify(row));
-                var datos;
-                // console.log(row);
-                datos = row;
-                console.log(datos["_id"]);
+                $("#table").bootstrapTable("refresh");
 
             },
             'click .remove': function(e, value, row, index) {
@@ -83,9 +75,12 @@
                             $.ajax({
                                 type: "POST",
                                 url: "../json/borrar_ajax.php",
-                                data: { "data_": datos }
+                                data: {
+                                    "data_": datos
+                                }
                             }).done(function(response) {
                                 console.log(response);
+                                $("#table").bootstrapTable("refresh");
                             }).fail(function(jqXHR) {
                                 console.log(jqXHR);
                             });
@@ -124,8 +119,8 @@
                     field: 'condicion',
                     title: 'Condición'
                 }, {
-                    field: 'operate',
-                    title: 'Item Operate',
+                    field: 'opciones',
+                    title: 'Opciones',
                     align: 'center',
                     clickToSelect: false,
                     events: window.operateEvents,

@@ -1,3 +1,6 @@
 <?php
-    echo "id de lo seleccionado ".$datos = $_REQUEST['data_']
+    $datos = $_REQUEST['data_'];
+    require_once "../conexion.php";
+    $delete = new conexion();
+    $delete->delete_book($datos);
 ?>
