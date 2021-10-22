@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 </head>
 
 <style>
@@ -21,7 +22,13 @@
 </style>
 
 <body onload="">
-    <table id="table" data-toolbar="#toolbar"  data-filter-control="true" data-pagination="true" data-show-jump-to="true" data-side-pagination="server">
+    <table id="table" data-filter-control="true" data-pagination="true" data-toggle="table"
+  data-height="460"
+  data-pagination="true"
+  data-page-list="[5, 10, All]" data-show-toggle="true" 
+  data-show-fullscreen="true" 
+  data-show-columns="true" 
+  data-show-refresh="true">
 
         <thead>
             <tr>
